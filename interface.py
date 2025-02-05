@@ -21,7 +21,7 @@ tabs = st.tabs(["📊 Dados", "📈 Análise", "🔢 Previsão"])
 with tabs[0]:
     st.subheader("📋 Amostra dos Dados")
     st.dataframe(dados.head(10), use_container_width=True)
-    st.write(f"Total de registros: {dados.shape[0]}")
+    st.write(f"Total de Registros: {dados.shape[0]}")
 
 with tabs[1]:
     st.subheader("📉 Gráfico de Dispersão")
@@ -32,6 +32,8 @@ with tabs[1]:
     ax.set_ylabel("Preço (R$)")
     ax.legend()
     st.pyplot(fig)
+    st.write(f"Correlação Linear: {dados.corr().loc['Area (m²)', 'Preco (R$)']:.2f}")
+    st.write(f"A correlação linear é: {'positiva' if dados.corr().loc['Area (m²)', 'Preco (R$)'] > 0 else 'negativa'}") 
 
 with tabs[2]:
     st.subheader("💰 Estimativa de Preço")
